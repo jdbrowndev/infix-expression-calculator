@@ -31,6 +31,8 @@ namespace InfixExpressionCalculator
         /// </summary>
         /// <param name="infix">A string infix expression.</param>
         /// <returns>A decimal storing the infix expression's evaluation.</returns>
+        /// <exception cref="System.Exception">Thrown if the infix expression is invalid.</exception>
+        /// <exception cref="System.DivideByZeroException">Thrown if the infix expression attempts to divide by 0.</exception>
         public static decimal EvaluateInfix(string infix)
         {
             return EvaluatePostfix(InfixToPostfix(infix));
@@ -43,7 +45,7 @@ namespace InfixExpressionCalculator
         /// </summary>
         /// <param name="infix">A string infix expression.</param>
         /// <returns>A string postfix expression.</returns>
-        /// <exception cref="System.Exception">Thrown when the infix expression is invalid.</exception>
+        /// <exception cref="System.Exception">Thrown if the infix expression is invalid.</exception>
         public static string InfixToPostfix(string infix)
         {
             if (infix.Length == 0) throw new Exception("Expression is empty.");
@@ -78,7 +80,15 @@ namespace InfixExpressionCalculator
             return output.ToString();
         }
 
-        private static void HandleOperatorCase(char token, Stack<char> operatorStack, StringBuilder output)
+        /// <summary>
+        /// Pops operators off operatorStack having greater or equal precedence to operatorToken, appends the operators
+        /// to the output string, then pushes operatorToken onto operatorStack.
+        /// </summary>
+        /// <param name="operatorToken">The operator to parse.</param>
+        /// <param name="operatorStack">The shunting-yard algorithm's operator stack.</param>
+        /// <param name="output">The shunting-yard algorithm's current output string.</param>
+        /// <exception cref="System.Exception">Thrown if two operators are adjacent.</exception>
+        private static void HandleOperatorCase(char operatorToken, Stack<char> operatorStack, StringBuilder output)
         {
             // The operator case is the only case where a space is appended to the output string ahead of
             // the next iteration. Thus, if the last character in the output string is a space, then two
@@ -86,27 +96,31 @@ namespace InfixExpressionCalculator
             if (output.Length > 0 && output[output.Length - 1] == ' ')
             {
                 throw new Exception(String.Format(
-                    "Operators {0} and {1} are adjacent.", operatorStack.Peek(), token));
+                    "Operators {0} and {1} are adjacent.", operatorStack.Peek(), operatorToken));
             }
 
-            // Pop operators off the stack that have greater or equal precedence than token and append them to
-            // the output string. Then push token onto the stack. Note that a left parenthesis on the stack
-            // will stop the loop.
+            // Pop operators off operatorStack having greater or equal precedence to operatorToken.
+            // Note that a left parenthesis on the stack will stop the loop.
             while (operatorStack.Count > 0 && Operators.ContainsKey(operatorStack.Peek()) &&
-                   Operators[operatorStack.Peek()] >= Operators[token])
+                   Operators[operatorStack.Peek()] >= Operators[operatorToken])
             {
                 output.Append(" ").Append(operatorStack.Pop());
             }
 
             output.Append(" ");
-            operatorStack.Push(token);
+            operatorStack.Push(operatorToken);
         }
 
+        /// <summary>
+        /// Pops operators off operatorStack and appends them to the output string until a matching left parenthesis
+        /// is found. The matching left parenthesis is then popped off operatorStack but is not appended to the output
+        /// string.
+        /// </summary>
+        /// <param name="operatorStack">The shunting-yard algorithm's operator stack.</param>
+        /// <param name="output">The shunting-yard algorithm's current output string.</param>
+        /// <exception cref="System.Exception">Thrown if a matching left parenthesis is not found.</exception>
         private static void HandleRightParenthesisCase(Stack<char> operatorStack, StringBuilder output)
         {
-            // Until a matching left parenthesis is found, pop operators off the stack and append them
-            // to the output string. When the matching left parenthesis is found, pop it off the stack
-            // but do not append it to the output string.
             while (operatorStack.Count > 0 && operatorStack.Peek() != '(')
             {
                 output.Append(" ").Append(operatorStack.Pop());
@@ -118,10 +132,14 @@ namespace InfixExpressionCalculator
             operatorStack.Pop();
         }
 
+        /// <summary>
+        /// Pops remaining operators off operatorStack and appends them to the output string.
+        /// </summary>
+        /// <param name="operatorStack">The shunting-yard algorithm's operator stack.</param>
+        /// <param name="output">The shunting-yard algorithm's current output string.</param>
+        /// <exception cref="System.Exception">Thrown if a left parenthesis is found on the stack.</exception>
         private static void EmptyOperatorStack(Stack<char> operatorStack, StringBuilder output)
         {
-            // At the end of the algorithm, remaining operators should be popped off the stack and appended to
-            // the output string. If a left parenthesis is still on the stack, then a right parenthesis is missing.
             while (operatorStack.Count > 0)
             {
                 if (operatorStack.Peek() == '(')
@@ -141,8 +159,8 @@ namespace InfixExpressionCalculator
         /// </summary>
         /// <param name="postfix">A string postfix expression.</param>
         /// <returns>A decimal storing the postfix expression's evaluation.</returns>
-        /// <exception cref="System.Exception">Thrown when the postfix expression is invalid.</exception>
-        /// <exception cref="System.DivideByZeroException">Thrown when the postfix expression divides by 0.</exception>
+        /// <exception cref="System.Exception">Thrown if the postfix expression is invalid.</exception>
+        /// <exception cref="System.DivideByZeroException">Thrown if the postfix expression attempts to divide by 0.</exception>
         public static decimal EvaluatePostfix(string postfix)
         {
             if (postfix.Length == 0) throw new Exception("Expression is empty.");
@@ -174,9 +192,19 @@ namespace InfixExpressionCalculator
             return stack.Pop();
         }
 
-        private static void ApplyOperatorToOperands(char token, decimal operand1, decimal operand2, Stack<decimal> stack)
+        /// <summary>
+        /// Evaluates the expression `operand1 operatorToken operand2`, then pushes the result onto stack.
+        /// </summary>
+        /// <param name="operatorToken">The operator to apply to operand1 and operand2.</param>
+        /// <param name="operand1">The expression's first operand.</param>
+        /// <param name="operand2">The expression's second operand.</param>
+        /// <param name="stack">The stack being used to evaluate a postfix expression.</param>
+        /// <exception cref="System.Exception">Thrown if operatorToken is unsupported.</exception>
+        /// <exception cref="System.DivideByZeroException">Thrown if the expression attempts to divide by 0.</exception>
+        private static void ApplyOperatorToOperands(char operatorToken, decimal operand1, decimal operand2,
+            Stack<decimal> stack)
         {
-            switch (token)
+            switch (operatorToken)
             {
                 case '-':
                     stack.Push(operand1 - operand2);
@@ -193,7 +221,7 @@ namespace InfixExpressionCalculator
                     break;
                 default:
                     throw new Exception(
-                        String.Format("{0} is an unsupported operator.", token));
+                        String.Format("{0} is an unsupported operator.", operatorToken));
             }
         }
 

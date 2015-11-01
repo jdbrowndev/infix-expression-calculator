@@ -1,6 +1,8 @@
 # Overview
 
-This C# solution can be used to evaluate infix expressions, i.e., arithmetic expressions written in traditional notation, such as (2+3)-4. The solution is comprised of 3 Visual Studio projects:
+This C# solution contains a calculator for evaluating infix expressions. Infix expressions are arithmetic expressions written in traditional notation, such as (2+3)-4.
+
+The solution is comprised of 3 Visual Studio projects:
 
 - `InfixExpressionCalculator` - Contains methods for evaluating infix expressions. At the core of this project is the shunting-yard algorithm, which is used to convert an infix expression to a postfix expression that can be evaluated using a stack.
 
@@ -17,6 +19,7 @@ To interact with the calculator, run the `InfixExpressionCalculator.CLI` project
 To run tests within the `InfixExpressionCalculator.Tests` project, use an NUnit test runner (e.g. Resharper).
 
 # Observations
+
 - Supported operators include `*`, `/`, `+`, and `-`. `(` and `)` parentheses are also supported.
   - Note that the `-` operator cannot be used to negate a number as a different operator would be required to implement this functionality.
 - Since a traditional calculator does not allow spaces, the program will remove spaces before processing an infix expression. This means that numbers separated by spaces will be concatenated together. For example, `20 15` would be parsed as `2015`.
