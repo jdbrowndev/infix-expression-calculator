@@ -31,6 +31,7 @@ namespace InfixExpressionCalculator.Tests
         }
 
         [TestCase("120", "120")]
+        [TestCase("(120)", "120")]
         public void Should_Return_The_Number_If_A_Single_Number_Is_Given(string infix, string postfix)
         {
             Assert.That(InfixExpressionCalculator.InfixToPostfix(infix), Is.EqualTo(postfix));
