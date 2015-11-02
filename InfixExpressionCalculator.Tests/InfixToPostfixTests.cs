@@ -30,6 +30,20 @@ namespace InfixExpressionCalculator.Tests
             Assert.That(InfixExpressionCalculator.InfixToPostfix(infix), Is.EqualTo(postfix));
         }
 
+        [TestCase("120", "120")]
+        public void Should_Return_The_Number_If_A_Single_Number_Is_Given(string infix, string postfix)
+        {
+            Assert.That(InfixExpressionCalculator.InfixToPostfix(infix), Is.EqualTo(postfix));
+        }
+
+        [TestCase("12 0", "120")]
+        [TestCase("2 + 5 2 + 1 3 2", "2 52 + 132 +")]
+        [TestCase("2 .2 + 4 .4", "2.2 4.4 +")]
+        public void Should_Concatenate_Adjacent_Numbers(string infix, string postfix)
+        {
+            Assert.That(InfixExpressionCalculator.InfixToPostfix(infix), Is.EqualTo(postfix));
+        }
+
         [Test]
         [ExpectedException(typeof (Exception), ExpectedMessage = "Expression is empty.")]
         public void Should_Throw_Exception_If_Expression_Is_Empty()
@@ -38,6 +52,7 @@ namespace InfixExpressionCalculator.Tests
         }
 
         [TestCase("5 + 5)")]
+        [TestCase("(5 + (5 + 5))) + (5 + 5)")]
         [ExpectedException(typeof (Exception), ExpectedMessage = "Missing ( parenthesis.")]
         public void Should_Throw_Exception_If_Left_Parenthesis_Is_Missing(string infix)
         {
@@ -45,6 +60,7 @@ namespace InfixExpressionCalculator.Tests
         }
 
         [TestCase("(5 + 5")]
+        [TestCase("(5 + (5 + 5) + (5 + 5)")]
         [ExpectedException(typeof (Exception), ExpectedMessage = "Missing ) parenthesis.")]
         public void Should_Throw_Exception_If_Right_Parenthesis_Is_Missing(string infix)
         {
