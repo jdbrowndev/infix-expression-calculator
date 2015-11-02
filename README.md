@@ -12,16 +12,30 @@ The solution is comprised of 3 Visual Studio projects:
 
 # Installation
 
-Ensure .NET Framework 4.5 is installed on your machine, then open the solution in Visual Studio 2013 or equivalent.
+Before installing, ensure that the following technologies are available on your machine:
 
-To interact with the calculator, run the `InfixExpressionCalculator.CLI` project.
+- .NET Framework 4.5
 
-To run tests within the `InfixExpressionCalculator.Tests` project, use an NUnit test runner (e.g. Resharper).
+- Visual Studio 2013 or equivalent
+
+Download the repository by clicking "Download ZIP" on GitHub or by using a Git client to run the following:
+
+`git clone https://github.com/emagdne/infix-expression-calculator.git`
+
+Once downloaded, open `InfixExpressionCalculator.sln` in Visual Studio.
+
+# Usage
+
+To interact with the calculator, right-click on the `InfixExpressionCalculator.CLI` project and select `Set as StartUp Project`. Then click `Debug` on the menu bar and select `Start Without Debugging`.
+
+To run tests within the `InfixExpressionCalculator.Tests` project, install an NUnit test runner (e.g. Resharper), right-click on the `InfixExpressionCalculator.Tests` project, and select `Run Unit Tests`.
 
 # Observations
 
 - Supported operators include `*`, `/`, `+`, and `-`. `(` and `)` parentheses are also supported.
+
   - Note that the `-` operator cannot be used to negate a number as a different operator would be required to implement this functionality.
+  
 - Since a traditional calculator does not allow spaces, the program will remove spaces before processing an infix expression. This means that numbers separated by spaces will be concatenated together. For example, `20 15` would be parsed as `2015`.
 
 # MIT License
