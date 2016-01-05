@@ -46,9 +46,10 @@ namespace InfixExpressionCalculator
         /// <param name="infix">A string infix expression.</param>
         /// <returns>A string postfix expression.</returns>
         /// <exception cref="System.Exception">Thrown if the infix expression is invalid.</exception>
+        /// <exception cref="System.ArgumentException">Thrown if the infix expression is null, empty, or consists only of whitespace characters.</exception>
         public static string InfixToPostfix(string infix)
         {
-            if (infix.Length == 0) throw new Exception("Expression is empty.");
+            if (string.IsNullOrWhiteSpace(infix)) throw new ArgumentException("Expression is empty.");
 
             var operatorStack = new Stack<char>();
             var output = new StringBuilder();
@@ -160,10 +161,11 @@ namespace InfixExpressionCalculator
         /// <param name="postfix">A string postfix expression.</param>
         /// <returns>A decimal storing the postfix expression's evaluation.</returns>
         /// <exception cref="System.Exception">Thrown if the postfix expression is invalid.</exception>
+        /// <exception cref="System.ArgumentException">Thrown if the postfix expression is null, empty, or consists only of whitespace characters.</exception>
         /// <exception cref="System.DivideByZeroException">Thrown if the postfix expression attempts to divide by 0.</exception>
         public static decimal EvaluatePostfix(string postfix)
         {
-            if (postfix.Length == 0) throw new Exception("Expression is empty.");
+            if (string.IsNullOrWhiteSpace(postfix)) throw new ArgumentException("Expression is empty.");
 
             var stack = new Stack<decimal>();
 

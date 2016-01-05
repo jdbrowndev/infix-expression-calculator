@@ -20,11 +20,14 @@ namespace InfixExpressionCalculator.Tests
             Assert.That(InfixExpressionCalculator.EvaluatePostfix(postfix), Is.EqualTo(output).Within(.001));
         }
 
-        [Test]
-        [ExpectedException(typeof (Exception), ExpectedMessage = "Expression is empty.")]
-        public void Should_Throw_Exception_If_Expression_Is_Empty()
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        [TestCase("\t")]
+        [ExpectedException(typeof (ArgumentException), ExpectedMessage = "Expression is empty.")]
+        public void Should_Throw_Exception_If_Expression_Is_Empty(string postfix)
         {
-            InfixExpressionCalculator.EvaluatePostfix("");
+            InfixExpressionCalculator.EvaluatePostfix(postfix);
         }
 
         [TestCase("2 0 /")]

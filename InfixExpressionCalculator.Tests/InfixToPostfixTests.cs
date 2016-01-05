@@ -45,11 +45,14 @@ namespace InfixExpressionCalculator.Tests
             Assert.That(InfixExpressionCalculator.InfixToPostfix(infix), Is.EqualTo(postfix));
         }
 
-        [Test]
-        [ExpectedException(typeof (Exception), ExpectedMessage = "Expression is empty.")]
-        public void Should_Throw_Exception_If_Expression_Is_Empty()
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        [TestCase("\t")]
+        [ExpectedException(typeof (ArgumentException), ExpectedMessage = "Expression is empty.")]
+        public void Should_Throw_Exception_If_Expression_Is_Empty(string infix)
         {
-            InfixExpressionCalculator.InfixToPostfix("");
+            InfixExpressionCalculator.InfixToPostfix(infix);
         }
 
         [TestCase("5 + 5)")]
