@@ -45,6 +45,14 @@ namespace InfixExpressionCalculator.Tests
             Assert.That(InfixExpressionCalculator.InfixToPostfix(infix), Is.EqualTo(postfix));
         }
 
+        [TestCase("(5)(6)", "56")]
+        [TestCase("(((((5)))))(6)((7))(((8)))", "5678")]
+        [TestCase("((1))(2) + 1", "12 1 +")]
+        public void Should_Concatenate_Adjacent_Numbers_In_Parentheses(string infix, string postfix)
+        {
+            Assert.That(InfixExpressionCalculator.InfixToPostfix(infix), Is.EqualTo(postfix));
+        }
+
         [TestCase(null)]
         [TestCase("")]
         [TestCase(" ")]

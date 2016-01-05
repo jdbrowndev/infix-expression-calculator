@@ -38,6 +38,8 @@ To run tests within the `InfixExpressionCalculator.Tests` project, install an NU
   
 - Since a traditional calculator does not allow spaces, the program will remove spaces before processing an infix expression. This means that numbers separated by spaces will be concatenated together. For example, `20 15` would be parsed as `2015`.
 
+- For simplicity, adjacent numbers in parentheses are concatenated rather than multiplied. For example, `(5)(6)` would be parsed as `56` rather than `5*6`.
+
 # MIT License
 
 Copyright (c) 2015 Jordan Brown
