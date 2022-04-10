@@ -1,34 +1,43 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfixExpressionCalculator", "InfixExpressionCalculator\InfixExpressionCalculator.csproj", "{04ADDAB5-4C64-4CB0-968B-97E55F9CFFA9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AE7341F3-A9F1-4D8F-9DE7-0431751CB2A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfixExpressionCalculator.Tests", "InfixExpressionCalculator.Tests\InfixExpressionCalculator.Tests.csproj", "{70FED4EE-3991-4992-BDD9-8214172FA89C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfixExpressionCalculator.Console", "src\InfixExpressionCalculator.Console\InfixExpressionCalculator.Console.csproj", "{F8BB939F-AA7B-4851-89EC-C02A9DE188BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfixExpressionCalculator.CLI", "InfixExpressionCalculator.CLI\InfixExpressionCalculator.CLI.csproj", "{93A3A6CA-026D-4148-ADDA-BE568626FB28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfixExpressionCalculator.Library", "src\InfixExpressionCalculator.Library\InfixExpressionCalculator.Library.csproj", "{841F7DDD-B439-4A5A-BD1C-C6D99740722C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{967A4813-B11D-4AF9-908A-3FB932CBF4D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfixExpressionCalculator.Tests", "tests\InfixExpressionCalculator.Tests\InfixExpressionCalculator.Tests.csproj", "{0DB33D54-46B8-44E9-987F-74D7BDA6B67A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{04ADDAB5-4C64-4CB0-968B-97E55F9CFFA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{04ADDAB5-4C64-4CB0-968B-97E55F9CFFA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{04ADDAB5-4C64-4CB0-968B-97E55F9CFFA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{04ADDAB5-4C64-4CB0-968B-97E55F9CFFA9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{70FED4EE-3991-4992-BDD9-8214172FA89C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{70FED4EE-3991-4992-BDD9-8214172FA89C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{70FED4EE-3991-4992-BDD9-8214172FA89C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{70FED4EE-3991-4992-BDD9-8214172FA89C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93A3A6CA-026D-4148-ADDA-BE568626FB28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93A3A6CA-026D-4148-ADDA-BE568626FB28}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93A3A6CA-026D-4148-ADDA-BE568626FB28}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93A3A6CA-026D-4148-ADDA-BE568626FB28}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8BB939F-AA7B-4851-89EC-C02A9DE188BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8BB939F-AA7B-4851-89EC-C02A9DE188BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8BB939F-AA7B-4851-89EC-C02A9DE188BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8BB939F-AA7B-4851-89EC-C02A9DE188BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{841F7DDD-B439-4A5A-BD1C-C6D99740722C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{841F7DDD-B439-4A5A-BD1C-C6D99740722C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{841F7DDD-B439-4A5A-BD1C-C6D99740722C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{841F7DDD-B439-4A5A-BD1C-C6D99740722C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DB33D54-46B8-44E9-987F-74D7BDA6B67A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DB33D54-46B8-44E9-987F-74D7BDA6B67A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DB33D54-46B8-44E9-987F-74D7BDA6B67A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DB33D54-46B8-44E9-987F-74D7BDA6B67A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F8BB939F-AA7B-4851-89EC-C02A9DE188BB} = {AE7341F3-A9F1-4D8F-9DE7-0431751CB2A3}
+		{841F7DDD-B439-4A5A-BD1C-C6D99740722C} = {AE7341F3-A9F1-4D8F-9DE7-0431751CB2A3}
+		{0DB33D54-46B8-44E9-987F-74D7BDA6B67A} = {967A4813-B11D-4AF9-908A-3FB932CBF4D6}
 	EndGlobalSection
 EndGlobal
