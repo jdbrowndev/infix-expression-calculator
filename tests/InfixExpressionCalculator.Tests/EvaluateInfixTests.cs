@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using InfixExpressionCalculator.Library;
+using Xunit;
 
 namespace InfixExpressionCalculator.Tests;
 
@@ -24,6 +25,6 @@ public class The_EvaluateInfix_Method
 	[InlineData("8.65468 - 6.65465 - 2.65654", -0.65651)]
 	public void Should_Evaluate_An_Infix_Expression_Correctly(string infix, decimal output)
 	{
-		Assert.Equal(output, InfixExpressionCalculator.EvaluateInfix(infix), 4);
+		Assert.Equal(output, Calculator.EvaluateInfix(infix), 4);
 	}
 }

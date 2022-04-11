@@ -1,30 +1,22 @@
-﻿using System;
+﻿using InfixExpressionCalculator.Library;
 
-namespace InfixExpressionCalculator.CLI
+Console.WriteLine("When done, enter 'exit' to quit the calculator.");
+while (true)
 {
-    /// <summary>
-    /// A small command-line interface for InfixExpressionCalculator.
-    /// </summary>
-    internal static class Program
-    {
-        internal static void Main()
-        {
-            Console.WriteLine("When done, enter 'exit' to quit the calculator.");
-            while (true)
-            {
-                Console.Write("Enter an infix expression: ");
-                string input = Console.ReadLine(), output;
-                if (input.ToLower().Equals("exit")) break;
-                try
-                {
-                    output = InfixExpressionCalculator.EvaluateInfix(input).ToString();
-                }
-                catch (Exception e)
-                {
-                    output = "Invalid expression: " + e.Message;
-                }
-                Console.WriteLine("=> {0}\n", output);
-            }
-        }
-    }
+	string output;
+	try
+	{
+		Console.Write("Enter an infix expression: ");
+		string input = Console.ReadLine();
+
+		if (input.ToLower().Equals("exit"))
+			break;
+
+		output = Calculator.EvaluateInfix(input).ToString();
+	}
+	catch (Exception e)
+	{
+		output = $"Invalid expression: {e.Message}";
+	}
+	Console.WriteLine($"=> {output}\n");
 }
