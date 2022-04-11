@@ -14,6 +14,20 @@ The solution is comprised of 3 projects:
 
 .NET 6 SDK must be installed to run the calculator and its tests.
 
+To run the calculator:
+
+```
+cd .\src\InfixExpressionCalculator.Console\
+dotnet run
+```
+
+To run all tests:
+
+```
+cd .\tests\InfixExpressionCalculator.Tests\
+dotnet test
+```
+
 # Notes
 
 - Supported operators include `*`, `/`, `+`, and `-`. `(` and `)` parentheses are also supported.
