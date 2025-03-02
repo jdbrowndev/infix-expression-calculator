@@ -12,7 +12,7 @@ The solution is comprised of 3 projects:
 
 # Installation
 
-.NET 6 SDK must be installed to run the calculator and its tests.
+The .NET SDK must be installed to run the calculator and its tests.
 
 To run the calculator:
 
