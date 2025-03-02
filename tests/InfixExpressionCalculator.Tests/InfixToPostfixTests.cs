@@ -14,22 +14,22 @@ public class The_InfixToPostfix_Method
 	}
 
 	[Theory]
-	[InlineData("10 / 5 * 2", "10 5 2 * /")]
-	public void Should_Handle_Multiplication_Before_Division(string infix, string postfix)
+	[InlineData("10 / 5 * 2", "10 5 / 2 *")]
+	public void Should_Handle_Multiplication_And_Division_Left_To_Right(string infix, string postfix)
 	{
 		Assert.Equal(postfix, Calculator.InfixToPostfix(infix));
 	}
 
 	[Theory]
-	[InlineData("5 + 10 / 10", "5 10 10 / +")]
-	public void Should_Handle_Division_Before_Addition(string infix, string postfix)
+	[InlineData("8 * 5 + 10 / 10", "8 5 * 10 10 / +")]
+	public void Should_Handle_Multiplication_And_Division_Before_Addition(string infix, string postfix)
 	{
 		Assert.Equal(postfix, Calculator.InfixToPostfix(infix));
 	}
 
 	[Theory]
-	[InlineData("10 - 5 + 5", "10 5 5 + -")]
-	public void Should_Handle_Addition_Before_Subtraction(string infix, string postfix)
+	[InlineData("10 - 5 + 5", "10 5 - 5 +")]
+	public void Should_Handle_Addition_And_Subtraction_Left_To_Right(string infix, string postfix)
 	{
 		Assert.Equal(postfix, Calculator.InfixToPostfix(infix));
 	}

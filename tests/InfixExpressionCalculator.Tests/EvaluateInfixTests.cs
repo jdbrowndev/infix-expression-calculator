@@ -9,7 +9,7 @@ public class The_EvaluateInfix_Method
 	[InlineData("2 + 2", 4.0)]
 	[InlineData("2", 2.0)]
 	[InlineData("5 + 5 - 2", 8.0)]
-	[InlineData("5 - 2 + 12 / 2 * 3", 1.0)]
+	[InlineData("5 - 2 + 12 / 2 * 3", 21.0)]
 	[InlineData("(5 * 2) + 2", 12.0)]
 	[InlineData("5 * (2 + 2)", 20.0)]
 	[InlineData("(5 * 2) + (5 * 3)", 25.0)]

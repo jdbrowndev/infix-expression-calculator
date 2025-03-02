@@ -18,9 +18,9 @@ public static class Calculator
 	private static readonly Dictionary<char, int> Operators = new Dictionary<char, int>
 	{
 		{'-', 1},
-		{'+', 2},
-		{'/', 3},
-		{'*', 4}
+		{'+', 1},
+		{'/', 2},
+		{'*', 2}
 	};
 
 	/// <summary>
